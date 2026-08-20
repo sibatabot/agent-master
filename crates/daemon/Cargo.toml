@@ -1,0 +1,27 @@
+[package]
+name = "agent-master"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name = "agent_master"
+path = "src/lib.rs"
+
+[[bin]]
+name = "agent-master"
+path = "src/main.rs"
+
+[dependencies]
+agent-master-protocol.workspace = true
+anyhow.workspace = true
+base64.workspace = true
+clap.workspace = true
+env_logger.workspace = true
+libc.workspace = true
+log.workspace = true
+pty-process.workspace = true
+tokio = { workspace = true, features = ["full"] }
+vt100.workspace = true
+
+[dev-dependencies]
+agent-master-client.workspace = true

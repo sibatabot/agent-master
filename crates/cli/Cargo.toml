@@ -1,0 +1,21 @@
+[package]
+name = "agent-master-cli"
+version.workspace = true
+edition.workspace = true
+
+[[bin]]
+name = "amctl"
+path = "src/main.rs"
+
+[dependencies]
+agent-master-client.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+libc.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "io-std", "io-util"] }
+
+[dev-dependencies]
+agent-master = { path = "../daemon" }
+base64.workspace = true
+vt100.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread", "io-util", "net", "process", "time"] }

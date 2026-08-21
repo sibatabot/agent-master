@@ -33,7 +33,7 @@ const UNBINDABLE: &str = "127.0.0.1:1";
 async fn started(told: Told) -> (Daemon, AgentMaster) {
     for _ in 0..5 {
         let address = format!("127.0.0.1:{}", lately_free_port());
-        let mut command = Command::new(env!("CARGO_BIN_EXE_agent-master"));
+        let mut command = Command::new(env!("CARGO_BIN_EXE_svora-am"));
         match told {
             Told::Flag => {
                 command.args(["--listen", &address]);
@@ -82,7 +82,7 @@ async fn the_given_address_wins_over_the_one_in_the_environment() {
 
 #[tokio::test]
 async fn the_program_says_which_address_it_ended_up_on() {
-    let mut daemon = tokio::process::Command::new(env!("CARGO_BIN_EXE_agent-master"))
+    let mut daemon = tokio::process::Command::new(env!("CARGO_BIN_EXE_svora-am"))
         .args(["--listen", "127.0.0.1:0"])
         .env("RUST_LOG", "info")
         .stderr(Stdio::piped())
@@ -113,7 +113,7 @@ fn an_address_it_cannot_have_is_reported_and_ends_the_program() {
     let taken = TcpListener::bind("127.0.0.1:0").expect("bind");
     let address = taken.local_addr().expect("bound address").to_string();
 
-    let run = Command::new(env!("CARGO_BIN_EXE_agent-master"))
+    let run = Command::new(env!("CARGO_BIN_EXE_svora-am"))
         .args(["--listen", &address])
         .stderr(Stdio::piped())
         .output()
@@ -126,7 +126,7 @@ fn an_address_it_cannot_have_is_reported_and_ends_the_program() {
 
 #[test]
 fn an_address_it_was_never_given_is_reported() {
-    let run = Command::new(env!("CARGO_BIN_EXE_agent-master"))
+    let run = Command::new(env!("CARGO_BIN_EXE_svora-am"))
         .env_remove("AGENT_MASTER_LISTEN")
         .stderr(Stdio::piped())
         .output()

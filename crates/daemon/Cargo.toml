@@ -8,7 +8,7 @@ name = "agent_master"
 path = "src/lib.rs"
 
 [[bin]]
-name = "agent-master"
+name = "svora-am"
 path = "src/main.rs"
 
 [dependencies]

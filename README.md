@@ -10,7 +10,7 @@ drives a host process and a container process the same way.
 
 ## Parts
 
-- `crates/daemon` — the program (`agent-master`), which owns the process.
+- `crates/daemon` — the program (`svora-am`), which owns the process.
 - `crates/client` — the library everything else talks to it through.
 - `crates/cli` — `amctl`, for driving one by hand.
 - `crates/protocol` — the wire language, known only to the two sides above.
@@ -18,7 +18,7 @@ drives a host process and a container process the same way.
 ## By hand
 
 ```sh
-agent-master --listen 127.0.0.1:7620    # or AGENT_MASTER_LISTEN in the environment
+svora-am --listen 127.0.0.1:7620    # or AGENT_MASTER_LISTEN in the environment
 
 export AGENT_MASTER_ADDR=127.0.0.1:7620
 amctl start --cwd /workdir --rows 80 --cols 100 --env TERM=xterm-256color -- claude
